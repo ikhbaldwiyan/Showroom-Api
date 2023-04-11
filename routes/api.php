@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\LiveController;
 use App\Http\Controllers\API\ProfileController;
+use App\Http\Controllers\API\RoomController;
 use App\Http\Controllers\FarmingController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,11 @@ Route::prefix('profile')->controller(ProfileController::class)->group(function (
     Route::post('/update_avatar', 'update_avatar');
     Route::post('/get_avatar', 'get_avatar');
     Route::post('/room', 'room');
+});
+
+Route::prefix('room')->controller(RoomController::class)->group(function() {
+    Route::get('/search', 'search');
+    Route::get('/search/autocomplete', 'search_autocomplete');
 });
 
 Route::get('/room_official', [FarmingController::class, 'room_official']);
